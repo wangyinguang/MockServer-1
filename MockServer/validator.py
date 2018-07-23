@@ -93,6 +93,7 @@ def domain_server(**kwargs):
     data = kwargs.get('data', {})
     invalid = kwargs.get('invalid', {})
 
+    form = {}
     if request.json:
         form = request.json
 
@@ -103,7 +104,7 @@ def domain_server(**kwargs):
         form = request.args
 
     if data is {}:  # do not have any parameters
-        return Validator.valid(response=kwargs.get('valid'))
+        return Validator.valid(response=kwargs.get('result'))
 
     else:
         if len(form) != len(data):  # data do not matched
@@ -144,4 +145,4 @@ def domain_server(**kwargs):
                 if msg:
                     return msg
 
-        return Validator.valid(response=kwargs.get('valid'))
+        return Validator.valid(response=kwargs.get('result'))
